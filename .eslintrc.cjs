@@ -5,8 +5,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
-    'plugin:react-hooks/recommended',
-    'prettier'
+    'plugin:react-hooks/recommended'
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
@@ -43,22 +42,6 @@ module.exports = {
     'no-unexpected-multiline': 'warn',
     'comma-dangle': 'warn',
     'comma-spacing': 'warn',
-    'arrow-spacing': 'warn',
-
-    // Tăng cường một số rule prettier (copy từ file .prettierrc qua)
-    'prettier/prettier': [
-      'warn',
-      {
-        arrowParens: 'always',
-        semi: false,
-        trailingComma: 'none',
-        tabWidth: 2,
-        endOfLine: 'auto',
-        useTabs: false,
-        singleQuote: true,
-        printWidth: 120,
-        jsxSingleQuote: true
-      }
-    ]
+    'arrow-spacing': 'warn'
   }
 }
