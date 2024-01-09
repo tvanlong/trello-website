@@ -12,13 +12,13 @@ import Button from '@mui/material/Button'
 import PersonAddIcon from '@mui/icons-material/PersonAdd'
 
 const MENU_STYLES = {
-  backgroundColor: 'white',
-  color: 'primary.main',
+  backgroundColor: 'transparent',
+  color: 'white',
   border: 'none',
   paddingX: '5px',
   borderRadius: '5px',
   '& .MuiSvgIcon-root': {
-    color: 'primary.main'
+    color: 'white'
   },
   '&:hover': {
     backgroundColor: 'primary.50'
@@ -37,7 +37,8 @@ function BoardBar() {
         justifyContent: 'space-between',
         gap: 2,
         overflowX: 'auto',
-        borderTop: '1px solid #00bfa5'
+        borderBottom: '1px solid #00bfa5',
+        bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#34495e' : '#1976d2')
       }}
     >
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
@@ -48,18 +49,30 @@ function BoardBar() {
         <Chip sx={MENU_STYLES} icon={<FilterListIcon />} label='Filter' clickable />
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-        <Button variant='outlined' startIcon={<PersonAddIcon />}>
+        <Button
+          variant='outlined'
+          sx={{
+            color: 'white',
+            borderColor: 'white',
+            '&:hover': {
+              borderColor: 'white'
+            }
+          }}
+          startIcon={<PersonAddIcon />}
+        >
           Invite
         </Button>
         <AvatarGroup
+          max={4}
           sx={{
+            gap: 1,
             '& .MuiAvatar-root': {
               width: 30,
               height: 30,
-              fontSize: '0.8rem'
+              fontSize: '0.8rem',
+              border: 'none'
             }
           }}
-          max={4}
         >
           <Tooltip title='Remy Sharp'>
             <Avatar alt='Remy Sharp' src='' />
