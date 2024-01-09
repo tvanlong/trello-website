@@ -15,6 +15,7 @@ import Recent from './Menus/Recent'
 import Starred from './Menus/Starred'
 import Templates from './Menus/Templates'
 import Profiles from './Menus/Profiles'
+import LibraryAddIcon from '@mui/icons-material/LibraryAdd'
 
 function AppBar() {
   return (
@@ -42,7 +43,9 @@ function AppBar() {
             <Recent />
             <Starred />
             <Templates />
-            <Button variant='outlined'>Create</Button>
+            <Button startIcon={<LibraryAddIcon />} variant='outlined'>
+              Create
+            </Button>
           </Box>
         </Box>
       </Box>
