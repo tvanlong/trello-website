@@ -70,7 +70,12 @@ function BoardBar() {
               width: 30,
               height: 30,
               fontSize: '0.8rem',
-              border: 'none'
+              border: 'none',
+              color: 'white',
+              cursor: 'pointer',
+              '&:first-of-type': {
+                backgroundColor: '#a4b0be'
+              }
             }
           }}
         >
