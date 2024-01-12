@@ -8,7 +8,9 @@ import GroupIcon from '@mui/icons-material/Group'
 import CommentIcon from '@mui/icons-material/Comment'
 import AttachmentIcon from '@mui/icons-material/Attachment'
 
-function Card({ temporaryHideMedia }) {
+function Card({ card }) {
+  const shouldShowCardActions = !!card?.memberIds?.length || !!card?.comments?.length || !!card?.attachments?.length
+
   return (
     <MuiCard
       sx={{
@@ -17,13 +19,8 @@ function Card({ temporaryHideMedia }) {
         overflow: 'unset'
       }}
     >
-      {!temporaryHideMedia && (
-        <CardMedia
-          sx={{ height: 140 }}
-          image='https://mui.com/static/images/cards/contemplative-reptile.jpg'
-          title='green iguana'
-        />
-      )}
+      {card?.cover && <CardMedia sx={{ height: 140 }} image={card.cover} title={card.title} />}
+
       <CardContent
         sx={{
           p: 1.5,
@@ -32,19 +29,26 @@ function Card({ temporaryHideMedia }) {
           }
         }}
       >
-        <Typography>MERN Stack</Typography>
+        <Typography>{card.title}</Typography>
       </CardContent>
-      {!temporaryHideMedia && (
+
+      {shouldShowCardActions && (
         <CardActions sx={{ p: '0 4px 8px 4px' }}>
-          <Button startIcon={<GroupIcon />} size='small'>
-            20
-          </Button>
-          <Button startIcon={<CommentIcon />} size='small'>
-            15
-          </Button>
-          <Button startIcon={<AttachmentIcon />} size='small'>
-            10
-          </Button>
+          {!!card?.memberIds?.length > 0 && (
+            <Button startIcon={<GroupIcon />} size='small'>
+              {card.memberIds?.length}
+            </Button>
+          )}
+          {!!card?.comments?.length > 0 && (
+            <Button startIcon={<CommentIcon />} size='small'>
+              {card.comments?.length}
+            </Button>
+          )}
+          {!!card?.attachments?.length > 0 && (
+            <Button startIcon={<AttachmentIcon />} size='small'>
+              {card.attachments?.length}
+            </Button>
+          )}
         </CardActions>
       )}
     </MuiCard>
