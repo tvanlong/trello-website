@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { useSortable } from '@dnd-kit/sortable'
+import { CSS } from '@dnd-kit/utilities'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Menu from '@mui/material/Menu'
@@ -19,6 +21,10 @@ import ListCards from './ListCards/ListCards'
 import { mapOrder } from '~/utils/sort'
 
 function Column({ column }) {
+  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
+    id: column._id,
+    data: { ...column }
+  })
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
 
@@ -30,10 +36,19 @@ function Column({ column }) {
     setAnchorEl(null)
   }
 
+  const dndKitColumnStyles = {
+    transform: CSS.Translate.toString(transform),
+    transition
+  }
+
   const orderedCards = mapOrder(column?.cards, column?.cardOrderIds, '_id')
 
   return (
     <Box
+      ref={setNodeRef}
+      style={dndKitColumnStyles}
+      {...attributes}
+      {...listeners}
       sx={{
         minWidth: '300px',
         maxWidth: '300px',
